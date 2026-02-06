@@ -1,5 +1,8 @@
 package com.service.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -16,8 +19,14 @@ public class User {
 	private Long userId;
 	
 	private String name;
+	
+	@Column(nullable = false, unique = true)
+	private String username;
+	
 	private String phone;
 	private String address;
+	
+	@JsonIgnore
 	private String password;
 	
 	@Enumerated(EnumType.STRING)
@@ -43,6 +52,14 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPhone() {
